@@ -36,37 +36,68 @@ pre {
 h1 {
   margin: 0.5rem 0;
 }
+hr {
+  margin: 2rem 0 1rem;
+}
 </style>
 </head>
 <body>
 <h1>Data Cleaning and Pattern Match</h1>
+<p>For functions that separate one column into two columns, change “$1” to “$2” to get the second column. Otherwise do not edit the “regex pattern” or “replacement string” if you do not know what they are.</p>
 <div>
-<label for="pattern-preset">Preset:</label>
-<select id="pattern-preset">
-  <option>None</option>
-  <option>Append “老師”</option>
-  <option>Extract form name from class</option>
-  <option>Whitespace trimming</option>
-  <option>Remove unnecessary whitespaces between Chinese characters</option>
-  <option>Extract username from email address (Extract STRN from email address)</option>
-</select>
+  <label for="pattern-preset">Preset:</label>
+  <select id="pattern-preset">
+    <option>None</option>
+    <option>Append “老師”</option>
+    <option>Extract form name from class</option>
+    <option>Whitespace trimming</option>
+    <option>Remove unnecessary whitespaces between Chinese characters</option>
+    <option>Extract username from email address (Extract STRN from email address)</option>
+    <option>Separate class and class number</option>
+    <option>Separate Chinese and English</option>
+  </select>
 </div>
 <div>
-<label for="regex-pattern">Regex pattern:</label>
-<input type="text" id="regex-pattern" />
-<label for="replace-value">Replacement string:</label>
-<input type="text" id="replace-value" />
+  <label for="regex-pattern">Regex pattern:</label>
+  <input type="text" id="regex-pattern" />
+  <label for="replace-value">Replacement string:</label>
+  <input type="text" id="replace-value" />
 </div>
 <div style="display: flex; align-items: center;">
-<textarea id="src-str"></textarea>
-<button id="match-btn" style="margin: 0 1rem;">Apply replacement</button>
-<!--<pre id="replaced-str"></pre>-->
-<textarea id="replaced-str" disabled></textarea>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <textarea id="src-str"></textarea>
+    <button id="paste-pattern-btn" style="margin-top: 1rem;">Paste from Clipboard</button>
+  </div>
+  <button id="match-btn" style="margin: 0 1rem;">Apply replacement</button>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <!--<pre id="replaced-str"></pre>-->
+    <textarea id="replaced-str" disabled></textarea>
+    <button id="copy-pattern-btn" style="margin-top: 1rem;">Copy to Clipboard</button>
+  </div>
 </div>
+<hr />
+<h1>Level Calculation</h1>
 <div>
-<button id="paste-btn">Paste from Clipboard</button>
-<button id="copy-btn">Copy to Clipboard</button>
+  <label for="level-offset">Shift amount</label>
+  <input type="number" id="level-offset" value="0" />
 </div>
+<div style="display: flex; align-items: center;">
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <textarea id="formname" placeholder="Form name or class"></textarea>
+    <button id="paste-level-btn" style="margin-top: 1rem;">Paste from Clipboard</button>
+  </div>
+  <button id="calculate-levels" style="margin: 0 1rem;">Calculate levels</button>
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <textarea id="levels" disabled></textarea>
+    <button id="copy-level-btn" style="margin-top: 1rem;">Copy to Clipboard</button>
+  </div>
+</div>
+<ul>
+  <li>If P1 → Level 1, input 0 for the shift amount.</li>
+  <li>If P1 → Level B3, input -1 for the shift amount.</li>
+  <li>If S1 → Level 7, input 6 for the shift amount.</li>
+  <li>If S4 → Level 1, input -3 for the shift amount.</li>
+</ul>
 <script src="spreadsheet-toolbox.js"></script>
 </body>
 </html>

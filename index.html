@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Spreadsheet Toolbox</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: sans-serif;
+}
+@media (prefers-color-scheme: light) {
+  body {
+    background: white;
+    color: black;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #17141d;
+    color: #c5c5c5;
+  }
+}
+input, button, select, textarea, pre {
+  font-size: 1rem;
+}
+textarea {
+  width: 25rem;
+  height: 10rem;
+}
+pre {
+  margin: 0;
+  max-width: 15rem;
+  max-height: 20rem;
+  overflow-y: auto;
+}
+h1 {
+  margin: 0.5rem 0;
+}
+</style>
+</head>
+<body>
+<h1>Data Cleaning and Pattern Match</h1>
+<div>
+<label for="pattern-preset">Preset:</label>
+<select id="pattern-preset">
+  <option>None</option>
+  <option>Append “老師”</option>
+  <option>Extract form name from class</option>
+  <option>Whitespace trimming</option>
+  <option>Remove unnecessary whitespaces between Chinese characters</option>
+  <option>Extract username from email address (Extract STRN from email address)</option>
+</select>
+</div>
+<div>
+<label for="regex-pattern">Regex pattern:</label>
+<input type="text" id="regex-pattern" />
+<label for="replace-value">Replacement string:</label>
+<input type="text" id="replace-value" />
+</div>
+<div style="display: flex; align-items: center;">
+<textarea id="src-str"></textarea>
+<button id="match-btn" style="margin: 0 1rem;">Apply replacement</button>
+<!--<pre id="replaced-str"></pre>-->
+<textarea id="replaced-str" disabled></textarea>
+</div>
+<div>
+<button id="paste-btn">Paste from Clipboard</button>
+<button id="copy-btn">Copy to Clipboard</button>
+</div>
+<script src="spreadsheet-toolbox.js"></script>
+</body>
+</html>

@@ -41,11 +41,15 @@ document.getElementById("pattern-preset").addEventListener("input", (ev) => {
       break;
     case "Separate class and class number":
       document.getElementById("regex-pattern").value = "([PS]?\\d[A-za-z])\\s*(\\d{1,2})";
-      document.getElementById("replace-value").value = "$1";
+      document.getElementById("replace-value").value = "$1\\t$2";
       break;
     case "Separate Chinese and English":
-      document.getElementById("regex-pattern").value = "([A-Za-z-\\.]*)\\s*(.*)";
+      document.getElementById("regex-pattern").value = "([A-Za-z-\\.\\s]*)\\s*(.*)";
       document.getElementById("replace-value").value = "$1";
+      break;
+    case "Reverse two columns":
+      document.getElementById("regex-pattern").value = "(.*)\\t(.*)";
+      document.getElementById("replace-value").value = "$2\\t$1";
       break;
     default:
       document.getElementById("regex-pattern").value = "";
